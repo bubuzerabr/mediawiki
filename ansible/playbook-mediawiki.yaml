@@ -1,0 +1,87 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+    - name: Update do sistema operacional
+      apt: 
+         update_cache: yes
+
+    - name: Instalando pacotes basicos 
+      apt: name={{item}} state=present
+      loop:
+        - aptitude
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - python3-pip
+        - net-tools
+
+        - software-properties-common
+    
+    - name: adicionando chave GPG
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: instalando docker 
+      apt:
+        name: docker.io
+        state: latest
+        update_cache: yes
+    
+    - name: instalando prometheus  
+      apt:
+        name: prometheus
+        state: latest
+        update_cache: yes
+
+    - name: transferindo arquivos para o systemd 
+      become: true
+      copy: 
+        src: '{{item}}'
+        dest : /etc/systemd/system
+      loop:
+        - blackbox_exporter.service
+        - grafana.service
+        - mediawiki.service
+        - mysql.service
+
+    - name: transferindo arquivos para o  prometheus  
+      become: true
+      copy: 
+        src: prometheus.yml
+        dest : /etc/prometheus
+      
+    - name: transferindo arquivos para o  blackbox  
+      become: true
+      copy: 
+        src: blackbox.yml
+        dest : /etc/blackbox_exporter
+    
+    - name: iniciando o serviços do mediawiki
+      become: true
+      systemd:
+        name: mediawiki.service
+        enabled: yes
+        state: started
+
+    - name: iniciando o serviços do prometheus
+      become: true
+      systemd:
+        name: prometheus.service
+        enabled: yes
+        state: started
+
+    - name: iniciando o serviços do blackbox_exporter
+      become: true
+      systemd:
+        name: blackbox_exporter.service
+        enabled: yes
+        state: started
+      
+    - name: iniciando o serviços do grafana
+      become: true
+      systemd:
+        name: grafana.service
+        enabled: yes
+        state: started
