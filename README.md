@@ -1,4 +1,7 @@
- <h2>Minha mediawiki</h2> 
+ <h2>Minha mediawiki</h2>
+
+acesse [minhamediawiki](http://52.67.8.223:8088)
+
 
 Nesse topico, irei explicar o que utilizei para subir a infraestrura do sistema do Mediawiki 
 
@@ -24,3 +27,12 @@ Nesse topico, irei explicar o que utilizei para subir a infraestrura do sistema 
 - 5 - As aplicações estão sendo entregue com o Docker e gerenciado com o systemd para persistencia de dados 
 - 6 - como bando de dados utilizamos o Mysql 
 - 7 - para monitoração, utilizamos o Prometheus e blackbox-exporter para gerar as nossas metricas e o grafana para mostar graficamente as nossas metricas .
+
+
+
+links das aplicações rodando 
+
+[minhamediawiki](http://52.67.8.223:8080)
+[prometheus](http://52.67.8.223:9090)
+[blackbox-exporter](http://52.67.8.223:9115)
+[grafana](http://52.67.8.223:3000/d/bdonida/mediawiki?orgId=1&refresh=10s&from=1642719139472&to=1642722739472)
