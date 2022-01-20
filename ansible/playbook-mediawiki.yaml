@@ -85,3 +85,10 @@
         name: grafana.service
         enabled: yes
         state: started
+
+    - name: iniciando o serviços do mysql
+      become: true
+      systemd:
+        name: mysql.service
+        enabled: yes
+        state: started
