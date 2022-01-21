@@ -1,0 +1,19 @@
+[unit]
+Description=Prometheus
+After=docker.service
+Wants=docker.service
+
+[Service]
+Restart=always
+RestartSec=10s
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run \
+    --name %n \
+    --user 10178:10178 \
+    --net host \
+    -v "/etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml" \
+      prom/prometheus  \
+    --config.file=/etc/prometheus/prometheus.yml \
+    --storage.tsdb.path=/data/prometheus \
+    --web.external-url=http://localhost/prometheus/
