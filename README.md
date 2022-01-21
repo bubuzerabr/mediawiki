@@ -6,7 +6,7 @@ acesse [minhamediawiki](http://52.67.8.223:8088)
 Nesse topico, irei explicar o que utilizei para subir a infraestrura do sistema do Mediawiki 
 
 
-<h1>Ferramentas que foi utilizada</h1>
+<h1>Ferramentas que foram utilizada</h1>
 
 - Terraform
 - Aws 
