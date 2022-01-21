@@ -16,12 +16,7 @@
         - python3-pip
         - net-tools
 
-        - software-properties-common
-    
-    - name: adicionando chave GPG
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
+        - software-properties-commo
 
     - name: instalando docker 
       apt:
@@ -29,6 +24,13 @@
         state: latest
         update_cache: yes
     
+    
+    - name: adicionando chave GPG
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+        
+        
     - name: instalando prometheus  
       apt:
         name: prometheus
