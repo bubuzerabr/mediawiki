@@ -1,13 +1,19 @@
-[Unit]
-Description=Blackbox Exporter
-Wants=network-online.target
-After=network-online.target
+[unit]
+Description=Mediawiki
+After=docker.service
+Requires=docker.service
 
 [Service]
-User=root
-Group=root
-Type=simple
-ExecStart=/usr/local/bin/blackbox_exporter --config.file /etc/blackbox_exporter/blackbox.yml
+Restart=always
+RestartSec=10s
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run --init \
+    --user 0:0 \
+    --name %n \
+    -p 9115:9115
+    -v "/etc/blackbox_exporter:/etc/blackbox_exporter"
+     prom/blackbox-exporter \
 
 [Install]
 WantedBy=multi-user.target
