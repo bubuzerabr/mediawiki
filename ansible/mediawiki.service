@@ -1,0 +1,20 @@
+[unit]
+Description=Mediawiki
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+RestartSec=10s
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run --init \
+    --user 0:0 \
+    --name %n \
+    -p 8080:80 \
+    -v "/var/www/html/mediawiki-1.37.1:/var/www/html/mediawiki-1.37.1" \
+    -v "/var/www/data:/var/www/data" \
+     mediawiki \
+
+[Install]
+WantedBy=multi-user.target

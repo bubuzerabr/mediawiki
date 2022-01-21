@@ -1,0 +1,20 @@
+[unit]
+Description=Mediawiki
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+RestartSec=10s
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run --init \
+    --user 0:0 \
+    --name %n \
+    -e MYSQL_ROOT_PASSWORD=admin@admin \
+    -p 3306:3306 \
+    -v "mysql_data:/var/lib/mysql" \
+     mysql \
+
+[Install]
+WantedBy=multi-user.target
