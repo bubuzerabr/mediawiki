@@ -17,3 +17,6 @@ ExecStart=/usr/bin/docker run \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/data/prometheus \
     --web.external-url=http://localhost/prometheus/
+
+[Install]
+WantedBy=multi-user.target
