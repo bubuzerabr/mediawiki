@@ -14,7 +14,7 @@ Nesse tópico, irei explicar o que utilizei para subir a infraestrura do sistema
 - Docker
 - systemd
 - Prometheus
-- Backbox-exporter
+- Blackbox-exporter
 - Mysql
 - Grafana 
 
