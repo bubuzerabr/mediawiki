@@ -1,6 +1,6 @@
  <h2>Minha Mediawiki</h2>
 
-Acesse [minhamediawiki](http://52.67.8.223:8088)
+Acesse [minhamediawiki](http://52.67.8.223:8080/index.php/P%C3%A1gina_principal)
 
 
 Nesse tópico, irei explicar o que utilizei para subir a infraestrura do sistema do Mediawiki. 
