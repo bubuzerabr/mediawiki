@@ -14,7 +14,7 @@ scrape_configs:
     module: [http_2xx]
   static_configs:
     - targets:
-       - http://52.67.8.223:8080
+       - http://15.228.225.203:8080
   relabel_configs:
     - source_labels: [__address__]
       target_label: __param_target
